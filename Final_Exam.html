@@ -3,19 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CCNA 1 v7 - اختبار تفاعلي كامل</title>
+    <title>CCNA 1 v7 - اختبار تفاعلي كامل (مترجم + داكن/فاتح)</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f0f2f5;
             color: #1a1a2e;
-            direction: ltr;
             padding: 20px;
+            min-height: 100vh;
+        }
+        body.dark {
+            background: #1a1a2e;
+            color: #e0e0e0;
+        }
+        body.dark .container {
+            background: #2d2d44;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        }
+        body.dark .exam-meta {
+            background: #3d3d5c;
+            color: #ddd;
+        }
+        body.dark .question-container {
+            background: #38385a;
+            border-left-color: #4a90d9;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        body.dark .question-container.correct {
+            border-left-color: #28a745;
+            background: #2a4a3a;
+        }
+        body.dark .question-container.incorrect {
+            border-left-color: #dc3545;
+            background: #4a2a2a;
+        }
+        body.dark .option-item {
+            background: #3d3d5c;
+            border-color: #555577;
+        }
+        body.dark .option-item:hover {
+            background: #4a4a70;
+        }
+        body.dark .option-item.correct-answer {
+            background: #2a6a3a;
+            border-color: #28a745;
+        }
+        body.dark .option-item.wrong-answer {
+            background: #6a2a2a;
+            border-color: #dc3545;
+        }
+        body.dark .option-item.missed-correct {
+            background: #2a5a4a;
+            border-color: #28a745;
+            opacity: 0.7;
+        }
+        body.dark .btn-outline {
+            color: #4a90d9;
+            border-color: #4a90d9;
+        }
+        body.dark .btn-outline:hover {
+            background: #4a90d9;
+            color: #fff;
+        }
+        body.dark .score-section {
+            background: #3d3d5c;
+        }
+        body.dark .explanation {
+            background: #3a3a55;
+            border-left-color: #6c757d;
+        }
+        body.dark .matching-col select {
+            background: #3d3d5c;
+            color: #e0e0e0;
+            border-color: #555577;
+        }
+        body.dark .matching-col select.correct-match {
+            border-color: #28a745;
+            background: #2a4a3a;
+        }
+        body.dark .matching-col select.wrong-match {
+            border-color: #dc3545;
+            background: #4a2a2a;
+        }
+        body.dark .tag {
+            background: #4a4a6a;
+            color: #ccc;
+        }
+        body.dark .tag.multi {
+            background: #1a3a6a;
+            color: #aaccff;
+        }
+        body.dark .tag.match {
+            background: #1a4a3a;
+            color: #aaffcc;
+        }
+        body.dark .reset-link {
+            color: #aab;
+        }
+        body.dark .reset-link:hover {
+            color: #4a90d9;
         }
         .container {
             max-width: 1100px;
@@ -37,10 +129,17 @@
             align-items: center;
             flex-wrap: wrap;
         }
+        body.dark h1 {
+            color: #d0d0e0;
+            border-bottom-color: #4a90d9;
+        }
         h1 small {
             font-size: 16px;
             font-weight: 400;
             color: #555;
+        }
+        body.dark h1 small {
+            color: #aaa;
         }
         .exam-meta {
             display: flex;
@@ -60,6 +159,9 @@
             border-radius: 30px;
             font-weight: 600;
             font-size: 13px;
+        }
+        body.dark .exam-meta .badge {
+            background: #4a90d9;
         }
         .question-container {
             margin-bottom: 32px;
@@ -86,6 +188,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+        }
+        body.dark .question-number {
+            color: #4a90d9;
         }
         .question-number .status-badge {
             font-size: 13px;
@@ -177,6 +283,9 @@
             color: #2c3e50;
             margin-bottom: 6px;
         }
+        body.dark .matching-col label {
+            color: #ccc;
+        }
         .matching-col select {
             width: 100%;
             padding: 7px 10px;
@@ -258,6 +367,10 @@
             background: #0056a7;
             color: #fff;
         }
+        .btn-sm {
+            padding: 4px 14px;
+            font-size: 13px;
+        }
         .btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
@@ -271,6 +384,9 @@
             padding: 20px 0 10px;
             border-top: 1px solid #e9ecef;
             margin-top: 10px;
+        }
+        body.dark .actions {
+            border-top-color: #444;
         }
         .score-section {
             background: #e8edf3;
@@ -287,9 +403,15 @@
             font-weight: 700;
             color: #0056a7;
         }
+        body.dark .score-section .score-number {
+            color: #4a90d9;
+        }
         .score-section .score-detail {
             font-size: 15px;
             color: #2c3e50;
+        }
+        body.dark .score-section .score-detail {
+            color: #ccc;
         }
         .progress-bar {
             width: 100%;
@@ -298,6 +420,9 @@
             border-radius: 4px;
             margin: 10px 0 20px;
             overflow: hidden;
+        }
+        body.dark .progress-bar {
+            background: #444466;
         }
         .progress-bar .fill {
             height: 100%;
@@ -325,6 +450,10 @@
             border-top: 1px solid #e9ecef;
             padding-top: 20px;
         }
+        body.dark .footer {
+            border-top-color: #444;
+            color: #888;
+        }
         .tag {
             display: inline-block;
             background: #e9ecef;
@@ -343,36 +472,6 @@
             background: #d1e7dd;
             color: #0a5e2e;
         }
-        @media (max-width: 768px) {
-            .container {
-                padding: 16px;
-            }
-            h1 {
-                font-size: 22px;
-            }
-            .question-container {
-                padding: 16px 18px;
-            }
-            .question-text {
-                font-size: 15px;
-            }
-            .matching-grid {
-                flex-direction: column;
-                gap: 12px;
-            }
-            .matching-col {
-                flex: 1 1 100%;
-            }
-            .actions .btn {
-                flex: 1 1 100%;
-                text-align: center;
-            }
-            .score-section {
-                flex-direction: column;
-                gap: 8px;
-                text-align: center;
-            }
-        }
         .explanation {
             margin-top: 12px;
             padding: 12px 16px;
@@ -388,6 +487,9 @@
         }
         .explanation strong {
             color: #0056a7;
+        }
+        body.dark .explanation strong {
+            color: #4a90d9;
         }
         .toast {
             position: fixed;
@@ -417,15 +519,125 @@
         .toast.info {
             background: #0056a7;
         }
-        .question-container .hint {
+        body.dark .toast {
+            background: #3d3d5c;
+        }
+        .hint {
             font-size: 13px;
             color: #6c757d;
             margin-top: 6px;
             font-style: italic;
         }
-        select[multiple] {
-            height: auto;
-            min-height: 60px;
+        body.dark .hint {
+            color: #aaa;
+        }
+
+        /* Dark/Light toggle */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            background: #e8edf3;
+            padding: 6px 14px;
+            border-radius: 30px;
+            border: 1px solid #ccc;
+        }
+        body.dark .theme-toggle {
+            background: #3d3d5c;
+            border-color: #555;
+            color: #ddd;
+        }
+        .theme-toggle input {
+            display: none;
+        }
+        .theme-toggle .slider {
+            width: 40px;
+            height: 20px;
+            background: #ccc;
+            border-radius: 20px;
+            position: relative;
+            transition: 0.3s;
+        }
+        .theme-toggle .slider::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #fff;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: 0.3s;
+        }
+        body.dark .theme-toggle .slider {
+            background: #4a90d9;
+        }
+        body.dark .theme-toggle .slider::after {
+            left: 22px;
+        }
+
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            background: #e8edf3;
+            padding: 6px 14px;
+            border-radius: 30px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        body.dark .lang-toggle {
+            background: #3d3d5c;
+            border-color: #555;
+            color: #ddd;
+        }
+        .lang-toggle .lang-label {
+            font-weight: 600;
+        }
+
+        .top-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+            .question-container {
+                padding: 16px 18px;
+            }
+            .question-text {
+                font-size: 15px;
+            }
+            .matching-grid {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .matching-col {
+                flex: 1 1 100%;
+            }
+            .actions .btn {
+                flex: 1 1 100%;
+                text-align: center;
+            }
+            .score-section {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+            .top-controls {
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -437,10 +649,19 @@
             <small>جميع الأسئلة · عشوائي في كل زيارة</small>
         </h1>
 
-        <div class="exam-meta">
-            <span>📋 <span id="totalQ">0</span> سؤالاً · <span id="answeredCount">0</span> تمت الإجابة</span>
-            <span class="badge">⏱ 75 دقيقة</span>
-            <span style="cursor:pointer;" class="reset-link" onclick="resetExam()">🔄 ترتيب عشوائي جديد</span>
+        <div class="top-controls">
+            <div class="exam-meta" style="flex:1; margin-bottom:0;">
+                <span>📋 <span id="totalQ">0</span> سؤالاً · <span id="answeredCount">0</span> تمت الإجابة</span>
+                <span class="badge">⏱ 75 دقيقة</span>
+                <span style="cursor:pointer;" class="reset-link" onclick="resetExam()">🔄 ترتيب عشوائي جديد</span>
+            </div>
+            <div class="lang-toggle" id="langToggle" onclick="toggleLanguage()">
+                <span class="lang-label" id="langLabel">🌐 العربية</span>
+            </div>
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <span>🌓</span>
+                <div class="slider"></div>
+            </div>
         </div>
 
         <div class="progress-bar">
@@ -453,6 +674,7 @@
             <button class="btn btn-primary" onclick="submitExam()">📤 تسليم الاختبار</button>
             <button class="btn btn-outline" onclick="resetExam()">🔄 إعادة الترتيب</button>
             <button class="btn btn-outline" onclick="showAllExplanations()">📖 عرض كل الشروحات</button>
+            <button class="btn btn-outline" onclick="translateAll()">🌐 ترجمة الكل</button>
         </div>
 
         <div class="score-section" id="scoreSection" style="display:none;">
@@ -468,7 +690,7 @@
         </div>
 
         <div class="footer">
-            CCNA 1 v7 – جميع الأسئلة مأخوذة من الملف · ترتيب عشوائي تلقائي
+            CCNA 1 v7 – جميع الأسئلة مأخوذة من الملف · ترتيب عشوائي تلقائي · ترجمة فورية
         </div>
     </div>
 
@@ -476,10 +698,8 @@
 
     <script>
         // ======================================================================
-        //  كل الأسئلة مستخرجة من ملف PDF (159 سؤالاً)
-        //  الأنواع: single (اختيار واحد) ، multi (اختيار متعدد) ، match (توصيل)
+        //  كل الأسئلة (159 سؤالاً) - نفس القائمة السابقة
         // ======================================================================
-
         const allQuestions = [];
 
         // -----  سؤال 1  -----
@@ -491,7 +711,6 @@
             correct: [0, 3],
             explanation: 'RTP is designed for real-time data like voice and video. File transfer and web use TCP; peer-to-peer is a network model, not a traffic type.'
         });
-
         // -----  سؤال 2  -----
         allQuestions.push({
             id: 2,
@@ -501,7 +720,6 @@
             correct: 1,
             explanation: 'Zigbee is an IEEE 802.15.4 standard for low-power, low-data-rate personal-area networks, ideal for IoT and home automation.'
         });
-
         // -----  سؤال 3  -----
         allQuestions.push({
             id: 3,
@@ -511,7 +729,6 @@
             correct: 2,
             explanation: 'The internet layer of the TCP/IP model corresponds to the OSI network layer. It handles addressing and routing of messages across networks.'
         });
-
         // -----  سؤال 4  -----
         allQuestions.push({
             id: 4,
@@ -521,7 +738,6 @@
             correct: 0,
             explanation: 'DNS servers store records: A (IPv4 address), NS (name server), AAAA (IPv6 address), MX (mail exchange).'
         });
-
         // -----  سؤال 5  -----
         allQuestions.push({
             id: 5,
@@ -536,7 +752,6 @@
             correct: 2,
             explanation: 'Proprietary protocols are controlled by a single company or vendor. TCP/IP is an open standard, not proprietary.'
         });
-
         // -----  سؤال 6  -----
         allQuestions.push({
             id: 6,
@@ -551,7 +766,6 @@
             correct: 0,
             explanation: 'DNS (Domain Name System) translates human-readable domain names into numeric IP addresses required for network communication.'
         });
-
         // -----  سؤال 7  -----
         allQuestions.push({
             id: 7,
@@ -561,7 +775,6 @@
             correct: 3,
             explanation: 'Port 110 is the well-known port for POP3 (Post Office Protocol version 3), used for retrieving email from a server.'
         });
-
         // -----  سؤال 8  -----
         allQuestions.push({
             id: 8,
@@ -571,7 +784,6 @@
             correct: 1,
             explanation: 'ipconfig is the Windows command to display IP configuration including IPv4, IPv6, subnet mask, and default gateway.'
         });
-
         // -----  سؤال 9  -----
         allQuestions.push({
             id: 9,
@@ -581,7 +793,6 @@
             correct: 3,
             explanation: 'Peer-to-peer (P2P) networks allow devices to share resources like printers or files without a dedicated server.'
         });
-
         // -----  سؤال 10  -----
         allQuestions.push({
             id: 10,
@@ -596,7 +807,6 @@
             correct: 1,
             explanation: 'A virus is malicious software that runs on an end device, often spreading by attaching to other programs or files.'
         });
-
         // -----  سؤال 11  -----
         allQuestions.push({
             id: 11,
@@ -611,7 +821,6 @@
             correct: 1,
             explanation: 'QoS prioritizes real-time voice (audio conference) first, then transaction data (financial), then web data (lowest priority).'
         });
-
         // -----  سؤال 12  (مطابقة) -----
         allQuestions.push({
             id: 12,
@@ -620,12 +829,12 @@
             pairs: [
                 { left: 'This network portion of the address is assigned by the provider.', right: 'global routing prefix' },
                 { left: 'This part of the address is used by an organization to identify subnets.', right: 'subnet ID' },
-                { left: 'This part of the address is the equivalent to the host portion of an IPv4 address.', right: 'interface ID' }
+                { left: 'This part of the address is the equivalent to the host portion of an IPv4 address.',
+                right: 'interface ID' }
             ],
             correct: { 'global routing prefix': 'global routing prefix', 'subnet ID': 'subnet ID', 'interface ID': 'interface ID' },
             explanation: 'An IPv6 global unicast address consists of: global routing prefix (assigned by provider), subnet ID (organization), and interface ID (host portion).'
         });
-
         // -----  سؤال 13  -----
         allQuestions.push({
             id: 13,
@@ -642,7 +851,6 @@
             correct: 3,
             explanation: 'A file transfer uses FTP (application layer) and moves through all four layers of the TCP/IP model: application, transport, internet, and network access.'
         });
-
         // -----  سؤال 14  (مطابقة) -----
         allQuestions.push({
             id: 14,
@@ -654,11 +862,11 @@
                 { left: 'may forward runt frames', right: 'Cut-through' },
                 { left: 'checks the CRC before forwarding', right: 'Store-and-forward' }
             ],
-            correct: { 'low latency': 'Cut-through', 'always stores the entire frame': 'Store-and-forward', 'may forward runt frames': 'Cut-through',
+            correct: { 'low latency': 'Cut-through', 'always stores the entire frame': 'Store-and-forward',
+                'may forward runt frames': 'Cut-through',
                 'checks the CRC before forwarding': 'Store-and-forward' },
             explanation: 'Cut-through switches have low latency but may forward corrupt frames. Store-and-forward checks the entire frame (including CRC) before forwarding.'
         });
-
         // -----  سؤال 15  -----
         allQuestions.push({
             id: 15,
@@ -668,7 +876,6 @@
             correct: 2,
             explanation: 'The default gateway for a host is the IP address of the router interface connected to the same local network as the host. H1 is connected to R1 G0/0.'
         });
-
         // -----  سؤال 16  -----
         allQuestions.push({
             id: 16,
@@ -683,7 +890,6 @@
             correct: 0,
             explanation: 'Internet Messenger (instant messaging) enables real-time chat between remote users.'
         });
-
         // -----  سؤال 17  (مطابقة) -----
         allQuestions.push({
             id: 17,
@@ -699,7 +905,6 @@
                 'Network C (32 hosts)': '192.168.0.192/27', 'Network D (4 hosts)': '192.168.0.224/30' },
             explanation: 'Using /25 gives 128 addresses, /26 gives 64, /27 gives 32, /30 gives 4 addresses.'
         });
-
         // -----  سؤال 18  -----
         allQuestions.push({
             id: 18,
@@ -709,7 +914,6 @@
             correct: 1,
             explanation: 'The arp -a command displays the ARP table, which maps IP addresses to MAC addresses.'
         });
-
         // -----  سؤال 19  -----
         allQuestions.push({
             id: 19,
@@ -719,7 +923,6 @@
             correct: [2, 3],
             explanation: 'Electromagnetic interference (EMI) and radio frequency interference (RFI) are external disturbances that corrupt signals on copper cabling.'
         });
-
         // -----  سؤال 20  -----
         allQuestions.push({
             id: 20,
@@ -735,7 +938,6 @@
             correct: 4,
             explanation: 'For a remote destination, the host sends an ARP request for the default gateway\'s MAC address, not the destination host\'s MAC.'
         });
-
         // -----  سؤال 22  -----
         allQuestions.push({
             id: 22,
@@ -745,7 +947,6 @@
             correct: 0,
             explanation: 'Port 53 is the well-known port for DNS (Domain Name System) name resolution.'
         });
-
         // -----  سؤال 23  -----
         allQuestions.push({
             id: 23,
@@ -755,7 +956,6 @@
             correct: 1,
             explanation: '/27 (255.255.255.224) provides 30 usable host addresses (2^5 - 2 = 30), which is the smallest mask that supports 25 devices.'
         });
-
         // -----  سؤال 24  -----
         allQuestions.push({
             id: 24,
@@ -770,7 +970,6 @@
             correct: 3,
             explanation: 'A Trojan horse is malware that disguises itself as a legitimate program to deceive users into installing it.'
         });
-
         // -----  سؤال 25  -----
         allQuestions.push({
             id: 25,
@@ -785,7 +984,6 @@
             correct: 2,
             explanation: 'HTTPS (HTTP Secure) uses SSL/TLS encryption to secure web traffic, protecting text, images, and multimedia from interception.'
         });
-
         // -----  سؤال 26  -----
         allQuestions.push({
             id: 26,
@@ -800,7 +998,6 @@
             correct: 1,
             explanation: 'Each application session uses a unique source port number, allowing the PC to distinguish between different application sessions.'
         });
-
         // -----  سؤال 27  -----
         allQuestions.push({
             id: 27,
@@ -810,7 +1007,6 @@
             correct: 2,
             explanation: '/26 (255.255.255.192) provides 62 usable host addresses (2^6 - 2 = 62), the smallest mask that supports 61 devices.'
         });
-
         // -----  سؤال 28  (مطابقة) -----
         allQuestions.push({
             id: 28,
@@ -826,7 +1022,6 @@
                 'Network C (32 hosts)': '192.168.0.192/27', 'Network D (4 hosts)': '192.168.0.224/30' },
             explanation: 'Matching host requirements to appropriate subnet masks.'
         });
-
         // -----  سؤال 29  -----
         allQuestions.push({
             id: 29,
@@ -841,7 +1036,6 @@
             correct: 2,
             explanation: 'A Denial of Service (DoS) attack aims to slow or crash network services, making them unavailable to legitimate users.'
         });
-
         // -----  سؤال 30  (مطابقة) -----
         allQuestions.push({
             id: 30,
@@ -856,7 +1050,6 @@
             correct: { 'FTP': 'TCP', 'TFTP': 'UDP', 'DNS': 'UDP', 'HTTP': 'TCP' },
             explanation: 'FTP and HTTP use TCP for reliability; TFTP and DNS use UDP for lower overhead.'
         });
-
         // -----  سؤال 31  -----
         allQuestions.push({
             id: 31,
@@ -871,7 +1064,6 @@
             correct: 0,
             explanation: 'SMTP (Simple Mail Transfer Protocol) is used for sending email from clients to servers and between mail servers.'
         });
-
         // -----  سؤال 32  -----
         allQuestions.push({
             id: 32,
@@ -886,7 +1078,6 @@
             correct: 2,
             explanation: 'The transport layer uses port numbers to ensure that data is delivered to the correct application (browser window).'
         });
-
         // -----  سؤال 33  (مطابقة) -----
         allQuestions.push({
             id: 33,
@@ -902,7 +1093,6 @@
                 'Source IP': 'IP of Host B', 'Destination IP': 'IP of Host D' },
             explanation: 'The frame uses source MAC (Host B) and destination MAC (router). The IP packet uses source IP (Host B) and destination IP (Host D).'
         });
-
         // -----  سؤال 34  -----
         allQuestions.push({
             id: 34,
@@ -917,7 +1107,6 @@
             correct: 3,
             explanation: 'Attenuation is the loss of signal strength as it travels over distance on a copper cable.'
         });
-
         // -----  سؤال 35  -----
         allQuestions.push({
             id: 35,
@@ -932,7 +1121,6 @@
             correct: 2,
             explanation: 'To enter global configuration mode, the administrator must first be in privileged EXEC mode (enable). The prompt shows user EXEC mode (>).'
         });
-
         // -----  سؤال 36  -----
         allQuestions.push({
             id: 36,
@@ -942,7 +1130,6 @@
             correct: [2, 3],
             explanation: 'The application layer (top layer) includes DNS and POP. TCP, UDP are transport layer; IP is internet layer.'
         });
-
         // -----  سؤال 37  -----
         allQuestions.push({
             id: 37,
@@ -952,7 +1139,6 @@
             correct: 3,
             explanation: 'AAA stands for Authentication, Authorization, and Accounting. Authorization determines what resources a user can access (Read-Only vs Edit).'
         });
-
         // -----  سؤال 38  -----
         allQuestions.push({
             id: 38,
@@ -964,7 +1150,6 @@
             correct: [0, 1, 4],
             explanation: 'Protocols define message encoding, message size, and delivery options (unicast, multicast, broadcast) to ensure successful transmission.'
         });
-
         // -----  سؤال 39  -----
         allQuestions.push({
             id: 39,
@@ -980,7 +1165,6 @@
             correct: [0, 1],
             explanation: 'IP is connectionless (no end-to-end connection) and media independent (works over any network media).'
         });
-
         // -----  سؤال 40  -----
         allQuestions.push({
             id: 40,
@@ -990,7 +1174,6 @@
             correct: [0, 1, 4],
             explanation: 'Usernames/passwords = security. Video quality = QoS. Secondary connection activating = fault tolerance.'
         });
-
         // -----  سؤال 41  -----
         allQuestions.push({
             id: 41,
@@ -1002,7 +1185,6 @@
             correct: [0, 3],
             explanation: 'Improper termination and low-quality cable/connectors are common causes of physical layer performance degradation in UTP cabling.'
         });
-
         // -----  سؤال 42  -----
         allQuestions.push({
             id: 42,
@@ -1012,7 +1194,6 @@
             correct: 0,
             explanation: '192.168.1.64/26 has a range of 192.168.1.64 to 192.168.1.127, with usable addresses 65-126, so 96 is valid.'
         });
-
         // -----  سؤال 43  -----
         allQuestions.push({
             id: 43,
@@ -1028,7 +1209,6 @@
             correct: [2, 4],
             explanation: 'The trace complete indicates connectivity. The average time is around 2 ms (1+2+2+2+2 = 9/5 ≈ 2 ms).'
         });
-
         // -----  سؤال 44  -----
         allQuestions.push({
             id: 44,
@@ -1044,7 +1224,6 @@
             correct: [1, 3],
             explanation: 'Capture during peak times for a good representation, and on different network segments to see local traffic patterns.'
         });
-
         // -----  سؤال 45  -----
         allQuestions.push({
             id: 45,
@@ -1059,7 +1238,6 @@
             correct: 1,
             explanation: 'The ipv6 unicast-routing command enables IPv6 routing and causes interfaces to send ICMPv6 Router Advertisement messages.'
         });
-
         // -----  سؤال 46  -----
         allQuestions.push({
             id: 46,
@@ -1069,7 +1247,6 @@
             correct: [0, 1, 2],
             explanation: 'The top three OSI layers (application, presentation, session) map to the application layer of the TCP/IP model.'
         });
-
         // -----  سؤال 47  -----
         allQuestions.push({
             id: 47,
@@ -1084,7 +1261,6 @@
             correct: 3,
             explanation: 'R1 removes the Ethernet frame header and creates a new Layer 2 header (appropriate for the serial link) before forwarding.'
         });
-
         // -----  سؤال 48  -----
         allQuestions.push({
             id: 48,
@@ -1100,7 +1276,6 @@
             correct: 1,
             explanation: 'If the default gateway is misconfigured, the host can still communicate locally but cannot reach hosts on other networks.'
         });
-
         // -----  سؤال 49  -----
         allQuestions.push({
             id: 49,
@@ -1116,7 +1291,6 @@
             correct: [2, 4],
             explanation: 'ARP broadcasts are used when the MAC address is unknown. The device with the matching IP responds with an ARP reply.'
         });
-
         // -----  سؤال 50  -----
         allQuestions.push({
             id: 50,
@@ -1126,7 +1300,6 @@
             correct: 0,
             explanation: '/25 (255.255.255.128) provides 126 usable host addresses (2^7 - 2 = 126), the smallest mask that supports 90 devices.'
         });
-
         // -----  سؤال 51  -----
         allQuestions.push({
             id: 51,
@@ -1138,7 +1311,6 @@
             correct: [1, 3],
             explanation: 'Destination Unreachable and Time Exceeded are ICMPv4 messages also present in ICMPv6.'
         });
-
         // -----  سؤال 52  -----
         allQuestions.push({
             id: 52,
@@ -1148,7 +1320,6 @@
             correct: 3,
             explanation: 'Port 80 is the well-known port for HTTP (Hypertext Transfer Protocol) for web browsing.'
         });
-
         // -----  سؤال 53  -----
         allQuestions.push({
             id: 53,
@@ -1163,7 +1334,6 @@
             correct: 1,
             explanation: 'IMAP keeps messages on the server until manually deleted, allowing access from multiple devices. POP typically downloads and removes them.'
         });
-
         // -----  سؤال 54  -----
         allQuestions.push({
             id: 54,
@@ -1173,7 +1343,6 @@
             correct: 3,
             explanation: 'nslookup is used to query DNS servers to resolve hostnames to IP addresses, helping diagnose name resolution issues.'
         });
-
         // -----  سؤال 55  -----
         allQuestions.push({
             id: 55,
@@ -1189,7 +1358,6 @@
             correct: [3, 4],
             explanation: 'The LLC sublayer identifies the network layer protocol (Type field) and handles communication between upper layers and the NIC.'
         });
-
         // -----  سؤال 56  -----
         allQuestions.push({
             id: 56,
@@ -1204,7 +1372,6 @@
             correct: 1,
             explanation: 'The default gateway on a switch allows remote management from hosts on other networks.'
         });
-
         // -----  سؤال 57  -----
         allQuestions.push({
             id: 57,
@@ -1219,7 +1386,6 @@
             correct: 2,
             explanation: 'The transport input ssh command enables SSH on the VTY lines, encrypting all remote connections to the switch.'
         });
-
         // -----  سؤال 58  (مطابقة) -----
         allQuestions.push({
             id: 58,
@@ -1233,7 +1399,6 @@
                 'hardware threats': 'physical damage to servers, routers, switches, cabling plant, and' },
             explanation: 'Electrical threats include power issues; hardware threats include physical damage to network devices.'
         });
-
         // -----  سؤال 59  -----
         allQuestions.push({
             id: 59,
@@ -1243,7 +1408,6 @@
             correct: 2,
             explanation: 'Reconnaissance attacks involve unauthorized discovery and documentation of network systems, services, or vulnerabilities.'
         });
-
         // -----  سؤال 60  -----
         allQuestions.push({
             id: 60,
@@ -1258,7 +1422,6 @@
             correct: 3,
             explanation: 'HTTP defines rules for exchanging web content (text, images, video) between clients and servers.'
         });
-
         // -----  سؤال 61  -----
         allQuestions.push({
             id: 61,
@@ -1268,7 +1431,6 @@
             correct: 1,
             explanation: 'Port 67 is the well-known port for DHCP servers (UDP). Clients send requests to this port to obtain IP configuration.'
         });
-
         // -----  سؤال 62  -----
         allQuestions.push({
             id: 62,
@@ -1284,7 +1446,6 @@
             correct: [1, 4],
             explanation: 'ARP requests are broadcasts that flood the subnet and must be processed by all nodes, causing CPU interruption.'
         });
-
         // -----  سؤال 63  -----
         allQuestions.push({
             id: 63,
@@ -1294,7 +1455,6 @@
             correct: [3, 4, 5],
             explanation: 'ipconfig shows IP/DNS config, nslookup verifies DNS resolution, ping tests connectivity to the default gateway.'
         });
-
         // -----  سؤال 64  -----
         allQuestions.push({
             id: 64,
@@ -1309,7 +1469,6 @@
             correct: 1,
             explanation: 'When the destination is on a directly connected network, the router switches the packet directly to that interface.'
         });
-
         // -----  سؤال 65  -----
         allQuestions.push({
             id: 65,
@@ -1324,7 +1483,6 @@
             correct: 0,
             explanation: 'Antispyware protects end devices from malware that secretly collects user information.'
         });
-
         // -----  سؤال 66  -----
         allQuestions.push({
             id: 66,
@@ -1334,7 +1492,6 @@
             correct: 2,
             explanation: 'SSH (Secure Shell) encrypts all session data, including user IDs, passwords, and commands, ensuring privacy.'
         });
-
         // -----  سؤال 67  -----
         allQuestions.push({
             id: 67,
@@ -1351,7 +1508,6 @@
             correct: [4, 5],
             explanation: 'Keeping OS and applications updated (patching) and using updated antivirus software are the most effective defenses against malware.'
         });
-
         // -----  سؤال 68  -----
         allQuestions.push({
             id: 68,
@@ -1361,7 +1517,6 @@
             correct: 0,
             explanation: 'A Trojan horse is malicious software disguised as legitimate software (like a spreadsheet add-on) that can disable security features.'
         });
-
         // -----  سؤال 69  -----
         allQuestions.push({
             id: 69,
@@ -1377,7 +1532,6 @@
             correct: 3,
             explanation: 'The Frame Check Sequence (FCS) field is used for error detection. The destination recalculates the CRC to verify data integrity.'
         });
-
         // -----  سؤال 70  -----
         allQuestions.push({
             id: 70,
@@ -1387,7 +1541,6 @@
             correct: 0,
             explanation: '/29 (255.255.255.248) provides 6 usable host addresses (2^3 - 2 = 6), the smallest mask that supports 4 devices.'
         });
-
         // -----  سؤال 71  -----
         allQuestions.push({
             id: 71,
@@ -1402,7 +1555,6 @@
             correct: 0,
             explanation: 'POP3 downloads email from the server to the client\'s local application and typically deletes it from the server.'
         });
-
         // -----  سؤال 72  -----
         allQuestions.push({
             id: 72,
@@ -1414,7 +1566,6 @@
             correct: [1, 2],
             explanation: 'Intrusion Prevention Systems (IPS) and Virtual Private Networks (VPN) are typically used in corporate environments for advanced security.'
         });
-
         // -----  سؤال 73  -----
         allQuestions.push({
             id: 73,
@@ -1429,7 +1580,6 @@
             correct: 0,
             explanation: 'Antivirus software protects end devices from malicious software (viruses, worms, Trojans).'
         });
-
         // -----  سؤال 74  -----
         allQuestions.push({
             id: 74,
@@ -1444,7 +1594,6 @@
             correct: 2,
             explanation: 'Routers decrement the TTL field; if it reaches 0, the packet is discarded and a Time Exceeded ICMP message is sent to the source.'
         });
-
         // -----  سؤال 75  -----
         allQuestions.push({
             id: 75,
@@ -1454,7 +1603,6 @@
             correct: 3,
             explanation: 'Port 69 is the well-known port for TFTP (Trivial File Transfer Protocol), a simple UDP-based file transfer protocol.'
         });
-
         // -----  سؤال 76  -----
         allQuestions.push({
             id: 76,
@@ -1471,7 +1619,6 @@
             correct: [2, 3, 4],
             explanation: 'To enable SSH: configure IP domain name, generate RSA keys, and enable inbound SSH on VTY lines.'
         });
-
         // -----  سؤال 77  -----
         allQuestions.push({
             id: 77,
@@ -1487,7 +1634,6 @@
             correct: [1, 3],
             explanation: 'The MAC sublayer handles error detection (FCS trailer) and frame delimiting (identifying frame boundaries).'
         });
-
         // -----  سؤال 78  -----
         allQuestions.push({
             id: 78,
@@ -1502,7 +1648,6 @@
             correct: 3,
             explanation: 'FF02::2 is the multicast address for all IPv6 routers on the local link.'
         });
-
         // -----  سؤال 79  -----
         allQuestions.push({
             id: 79,
@@ -1512,7 +1657,6 @@
             correct: [0, 3, 4],
             explanation: 'An IPv6 global unicast address consists of: global routing prefix, subnet ID, and interface ID.'
         });
-
         // -----  سؤال 80  -----
         allQuestions.push({
             id: 80,
@@ -1522,7 +1666,6 @@
             correct: [3, 4, 5],
             explanation: 'Key wireless network concerns: coverage area, interference, and security.'
         });
-
         // -----  سؤال 81  -----
         allQuestions.push({
             id: 81,
@@ -1538,7 +1681,6 @@
             correct: 4,
             explanation: 'Exit privileged EXEC mode and press Enter to see the banner motd message displayed.'
         });
-
         // -----  سؤال 82  -----
         allQuestions.push({
             id: 82,
@@ -1548,7 +1690,6 @@
             correct: 1,
             explanation: 'CSMA/CA (Carrier Sense Multiple Access with Collision Avoidance) is used for wireless networks to manage media contention.'
         });
-
         // -----  سؤال 83  -----
         allQuestions.push({
             id: 83,
@@ -1563,7 +1704,6 @@
             correct: 1,
             explanation: 'The data link layer (Layer 2) is responsible for exchanging frames between nodes on the same local network segment.'
         });
-
         // -----  سؤال 84  -----
         allQuestions.push({
             id: 84,
@@ -1578,7 +1718,6 @@
             correct: 3,
             explanation: 'The TCP sliding window allows the receiver to control the sender\'s transmission rate by advertising a window size.'
         });
-
         // -----  سؤال 85  -----
         allQuestions.push({
             id: 85,
@@ -1593,7 +1732,6 @@
             correct: 1,
             explanation: 'Spyware is malware that secretly collects information about the user without their knowledge.'
         });
-
         // -----  سؤال 86  -----
         allQuestions.push({
             id: 86,
@@ -1603,7 +1741,6 @@
             correct: 0,
             explanation: 'Store-and-forward switching performs error checking using the FCS and drops frames that fail the check.'
         });
-
         // -----  سؤال 87  -----
         allQuestions.push({
             id: 87,
@@ -1613,7 +1750,6 @@
             correct: 2,
             explanation: 'IPv6 link-local addresses are in the FE80::/10 range (FE80:: to FEBF::).'
         });
-
         // -----  سؤال 88  -----
         allQuestions.push({
             id: 88,
@@ -1628,7 +1764,6 @@
             correct: 2,
             explanation: 'FTP (File Transfer Protocol) allows data transfers between a client and a file server over a network.'
         });
-
         // -----  سؤال 89  -----
         allQuestions.push({
             id: 89,
@@ -1638,7 +1773,6 @@
             correct: [0, 2],
             explanation: 'A DNS server is needed to resolve the domain name, and a default gateway is needed to reach remote networks (the Internet).'
         });
-
         // -----  سؤال 90  -----
         allQuestions.push({
             id: 90,
@@ -1655,7 +1789,6 @@
             correct: [1, 3],
             explanation: 'NAT slows IPv4 address depletion by using private addresses, but can break applications that require end-to-end connectivity.'
         });
-
         // -----  سؤال 91  -----
         allQuestions.push({
             id: 91,
@@ -1665,7 +1798,6 @@
             correct: 1,
             explanation: 'EUI-64: flip the 7th bit (1C→1E), insert FFFE, giving 1E6F:65FF:FEC2:BD8.'
         });
-
         // -----  سؤال 92  -----
         allQuestions.push({
             id: 92,
@@ -1681,7 +1813,6 @@
             correct: 2,
             explanation: 'Since PC1 and PC2 are on the same network, PC2 will respond directly with its MAC address in an ARP reply.'
         });
-
         // -----  سؤال 93  -----
         allQuestions.push({
             id: 93,
@@ -1696,7 +1827,6 @@
             correct: 2,
             explanation: 'BOOTP (Bootstrap Protocol) is a legacy protocol that allows diskless workstations to discover their IP address and locate a BOOTP server.'
         });
-
         // -----  سؤال 94  -----
         allQuestions.push({
             id: 94,
@@ -1711,7 +1841,6 @@
             correct: 1,
             explanation: 'Adware and spyware are types of software installed on a user\'s device that secretly collect information about the user.'
         });
-
         // -----  سؤال 95  -----
         allQuestions.push({
             id: 95,
@@ -1721,7 +1850,6 @@
             correct: 1,
             explanation: 'When the error threshold is reached, the switch reverts from cut-through to store-and-forward switching to ensure error-free forwarding.'
         });
-
         // -----  سؤال 96  (مطابقة) -----
         allQuestions.push({
             id: 96,
@@ -1739,7 +1867,6 @@
                 'a background service is required': 'peer-to-peer application' },
             explanation: 'Peer-to-peer networks don\'t need a dedicated server; devices can act as both client and server. P2P applications need a user interface and background service.'
         });
-
         // -----  سؤال 97  -----
         allQuestions.push({
             id: 97,
@@ -1749,7 +1876,6 @@
             correct: [2, 3],
             explanation: 'The MAC sublayer is responsible for data encapsulation (framing, addressing, error detection) and media access control.'
         });
-
         // -----  سؤال 98  -----
         allQuestions.push({
             id: 98,
@@ -1766,7 +1892,6 @@
             correct: [1, 2, 5],
             explanation: 'Vlan1 is the default SVI, allowing remote management. FastEthernet0/1 is up/up, indicating a device is attached.'
         });
-
         // -----  سؤال 99  (مطابقة) -----
         allQuestions.push({
             id: 99,
@@ -1782,7 +1907,6 @@
                 'This field is used by the LLC to identify the Layer 3 protocol.': 'Type/Length' },
             explanation: 'Destination MAC addresses direct the frame. The preamble marks the frame start. The Type/Length field identifies the encapsulated protocol.'
         });
-
         // -----  سؤال 100  -----
         allQuestions.push({
             id: 100,
@@ -1792,7 +1916,6 @@
             correct: 2,
             explanation: 'The subnet ID is the first 64 bits (network + subnet). For 2001:DA48:FC5:A4:3D1B::1/64, the subnet ID is 2001:DA48:FC5:A4::/64.'
         });
-
         // -----  سؤال 101  (مطابقة) -----
         allQuestions.push({
             id: 101,
@@ -1810,7 +1933,6 @@
                 'prevents access to websites': 'URL filtering' },
             explanation: 'Packet filtering uses IP/MAC addresses, application filtering uses port numbers, SPI prevents unsolicited sessions, URL filtering blocks websites.'
         });
-
         // -----  سؤال 102  -----
         allQuestions.push({
             id: 102,
@@ -1825,7 +1947,6 @@
             correct: 1,
             explanation: 'The network performance baseline is used to determine if current performance is normal or abnormal.'
         });
-
         // -----  سؤال 103  -----
         allQuestions.push({
             id: 103,
@@ -1840,7 +1961,6 @@
             correct: 1,
             explanation: 'The service password-encryption command encrypts plaintext passwords in the configuration file, preventing unauthorized viewing.'
         });
-
         // -----  سؤال 104  -----
         allQuestions.push({
             id: 104,
@@ -1856,7 +1976,6 @@
             correct: [0, 4],
             explanation: 'IPv6 keeps the Source Address field and replaces TTL with Hop Limit. IPv6 removes the Header Checksum field.'
         });
-
         // -----  سؤال 105  -----
         allQuestions.push({
             id: 105,
@@ -1868,7 +1987,6 @@
             correct: 5,
             explanation: 'The network with the most hosts is IP phones (22). Need 5 host bits (2^5 - 2 = 30). /27 = 255.255.255.224.'
         });
-
         // -----  سؤال 106  -----
         allQuestions.push({
             id: 106,
@@ -1883,7 +2001,6 @@
             correct: 0,
             explanation: 'Identity theft involves stealing credentials or personal information to access private data, often for financial gain.'
         });
-
         // -----  سؤال 107  -----
         allQuestions.push({
             id: 107,
@@ -1893,7 +2010,6 @@
             correct: 1,
             explanation: '/24 (255.255.255.0) provides 254 usable host addresses (2^8 - 2 = 254), the smallest mask that supports 200 devices.'
         });
-
         // -----  سؤال 108  -----
         allQuestions.push({
             id: 108,
@@ -1905,7 +2021,6 @@
             correct: [1, 3, 4],
             explanation: 'TIA/EIA-568 standards define cable lengths, pinouts (wire color assignments), and connector types for structured cabling.'
         });
-
         // -----  سؤال 109  -----
         allQuestions.push({
             id: 109,
@@ -1920,7 +2035,6 @@
             correct: 2,
             explanation: 'When terminating RJ-45 connectors, the untwisted wire length should be as short as possible (typically ≤ 1/2 inch) to reduce crosstalk.'
         });
-
         // -----  سؤال 110  (مطابقة) -----
         allQuestions.push({
             id: 110,
@@ -1933,7 +2047,6 @@
             correct: { 'physical topology': 'shows physical location of devices', 'logical topology': 'shows IP addressing scheme' },
             explanation: 'Physical topology shows device locations and cabling; logical topology shows IP addressing and network groupings.'
         });
-
         // -----  سؤال 111  -----
         allQuestions.push({
             id: 111,
@@ -1943,7 +2056,6 @@
             correct: 0,
             explanation: 'Port 143 is the well-known port for IMAP (Internet Message Access Protocol) for email retrieval.'
         });
-
         // -----  سؤال 112  -----
         allQuestions.push({
             id: 112,
@@ -1955,7 +2067,6 @@
             correct: [2, 4],
             explanation: 'Both TCP and UDP use port numbers to identify applications and use a checksum for error detection.'
         });
-
         // -----  سؤال 113  -----
         allQuestions.push({
             id: 113,
@@ -1967,7 +2078,6 @@
             correct: [1, 5],
             explanation: '10 hosts need 4 host bits (/28). 10.18.10.208/28 and 10.18.10.224/28 are valid unused subnets.'
         });
-
         // -----  سؤال 114  -----
         allQuestions.push({
             id: 114,
@@ -1977,7 +2087,6 @@
             correct: 0,
             explanation: 'Port 21 is the well-known port for FTP (File Transfer Protocol) control connection.'
         });
-
         // -----  سؤال 115  -----
         allQuestions.push({
             id: 115,
@@ -1987,7 +2096,6 @@
             correct: 2,
             explanation: 'The MAC address is a data link layer (Layer 2) address encoded on the NIC.'
         });
-
         // -----  سؤال 116  -----
         allQuestions.push({
             id: 116,
@@ -1997,7 +2105,6 @@
             correct: 3,
             explanation: '/28 (255.255.255.240) provides 14 usable host addresses (2^4 - 2 = 14), the smallest mask that supports 10 devices.'
         });
-
         // -----  سؤال 117  -----
         allQuestions.push({
             id: 117,
@@ -2012,7 +2119,6 @@
             correct: 1,
             explanation: 'Twisting the wires together into pairs cancels out magnetic fields and reduces crosstalk interference.'
         });
-
         // -----  سؤال 118  -----
         allQuestions.push({
             id: 118,
@@ -2028,7 +2134,6 @@
             correct: 3,
             explanation: 'With /29, the subnet 192.168.10.40/29 has usable addresses 41-46, with 41 as first usable and 46 as last usable (gateway).'
         });
-
         // -----  سؤال 119  -----
         allQuestions.push({
             id: 119,
@@ -2045,7 +2150,6 @@
             correct: 5,
             explanation: 'ARP requests are broadcast to all devices on the local network. Hosts B, C, and router R1 will receive it. Router R1 will not forward it.'
         });
-
         // -----  سؤال 120  (مطابقة) -----
         allQuestions.push({
             id: 120,
@@ -2063,7 +2167,6 @@
                 'a background service is required': 'peer-to-peer application' },
             explanation: 'Peer-to-peer networks don\'t need a dedicated server; P2P applications need a user interface and background service.'
         });
-
         // -----  سؤال 121  -----
         allQuestions.push({
             id: 121,
@@ -2073,7 +2176,6 @@
             correct: 1,
             explanation: 'Each /26 subnet provides 62 usable addresses. 4 subnets × 62 = 248 total. Used: 30+14+2+2 = 48. Unused: 248-48 = 200.'
         });
-
         // -----  سؤال 122  (مطابقة) -----
         allQuestions.push({
             id: 122,
@@ -2088,7 +2190,6 @@
             correct: { 'LC connector': 'LC', 'SC connector': 'SC', 'BNC': 'BNC', 'RJ-11': 'RJ-11' },
             explanation: 'Common fiber connectors: LC (small form-factor), SC (square connector), BNC (coaxial), RJ-11 (telephone).'
         });
-
         // -----  سؤال 123  -----
         allQuestions.push({
             id: 123,
@@ -2098,7 +2199,6 @@
             correct: 0,
             explanation: 'Port 22 is the well-known port for SSH (Secure Shell) for secure remote access.'
         });
-
         // -----  سؤال 124  -----
         allQuestions.push({
             id: 124,
@@ -2113,7 +2213,6 @@
             correct: 2,
             explanation: 'An Intrusion Prevention System (IPS) monitors traffic for threats and can immediately stop them.'
         });
-
         // -----  سؤال 125  -----
         allQuestions.push({
             id: 125,
@@ -2128,7 +2227,6 @@
             correct: 2,
             explanation: 'DHCP (Dynamic Host Configuration Protocol) automatically assigns IP addresses and configuration parameters to devices.'
         });
-
         // -----  سؤال 126  (مطابقة) -----
         allQuestions.push({
             id: 126,
@@ -2145,7 +2243,6 @@
                 'TTL': 'Layer 3', 'Acknowledgement number': 'Layer 4' },
             explanation: '802.2 is Layer 2 (LLC), IP addresses and TTL are Layer 3, port numbers and acknowledgment numbers are Layer 4.'
         });
-
         // -----  سؤال 127  -----
         allQuestions.push({
             id: 127,
@@ -2162,7 +2259,6 @@
             correct: 3,
             explanation: 'ARP broadcasts are received by all devices on the local network: hosts B, C, and router R1. Router R1 does not forward it.'
         });
-
         // -----  سؤال 128  -----
         allQuestions.push({
             id: 128,
@@ -2172,7 +2268,6 @@
             correct: 1,
             explanation: 'Zigbee is a low-power, low-data-rate wireless standard designed for IoT and home automation applications.'
         });
-
         // -----  سؤال 129  -----
         allQuestions.push({
             id: 129,
@@ -2184,7 +2279,6 @@
             correct: [0, 2],
             explanation: 'Neighbor Solicitation and Neighbor Advertisement messages are used by IPv6 Neighbor Discovery (ND) for address resolution (replacing ARP).'
         });
-
         // -----  سؤال 130  -----
         allQuestions.push({
             id: 130,
@@ -2199,7 +2293,6 @@
             correct: 3,
             explanation: 'Before using an SLAAC-generated address, the client sends a Neighbor Solicitation (Duplicate Address Detection) to ensure the address is unique.'
         });
-
         // -----  سؤال 131  -----
         allQuestions.push({
             id: 131,
@@ -2214,7 +2307,6 @@
             correct: 2,
             explanation: 'Since ping to a remote host succeeded, the gateway is operational. The failure to ping the gateway itself suggests security rules block ICMP echo requests.'
         });
-
         // -----  سؤال 132  -----
         allQuestions.push({
             id: 132,
@@ -2224,7 +2316,6 @@
             correct: 0,
             explanation: 'A /56 prefix has 8 bits for subnetting (64-56=8). 2^8 = 256 subnets.'
         });
-
         // -----  سؤال 133  -----
         allQuestions.push({
             id: 133,
@@ -2234,7 +2325,6 @@
             correct: 3,
             explanation: '40 devices need 6 host bits (2^6 - 2 = 62). /26 = 255.255.255.192.'
         });
-
         // -----  سؤال 134  -----
         allQuestions.push({
             id: 134,
@@ -2246,7 +2336,6 @@
             correct: 4,
             explanation: 'The frame destination MAC is the router interface (R2 Ethernet) connected to the same network: BB:BB:BB:BB:BB:BB.'
         });
-
         // -----  سؤال 135  -----
         allQuestions.push({
             id: 135,
@@ -2261,7 +2350,6 @@
             correct: 1,
             explanation: 'Cloud computing extends IT capabilities without requiring new infrastructure, training, or software licensing.'
         });
-
         // -----  سؤال 136  -----
         allQuestions.push({
             id: 136,
@@ -2276,7 +2364,6 @@
             correct: [0, 2],
             explanation: 'IP addresses remain constant (if no NAT), while MAC addresses change at each hop (router to router).'
         });
-
         // -----  سؤال 137  -----
         allQuestions.push({
             id: 137,
@@ -2291,7 +2378,6 @@
             correct: 2,
             explanation: 'The data link layer prepares network data for the physical network and provides media access to upper layers.'
         });
-
         // -----  سؤال 138  -----
         allQuestions.push({
             id: 138,
@@ -2308,7 +2394,6 @@
             correct: [1, 2, 3],
             explanation: 'CSMA/CD: listen before transmitting, random backoff after collision, all devices see the data on the segment.'
         });
-
         // -----  سؤال 139  -----
         allQuestions.push({
             id: 139,
@@ -2323,7 +2408,6 @@
             correct: 3,
             explanation: 'show startup-config displays the saved configuration stored in NVRAM.'
         });
-
         // -----  سؤال 140  -----
         allQuestions.push({
             id: 140,
@@ -2333,7 +2417,6 @@
             correct: [1, 3],
             explanation: 'On Windows, route print or netstat -r displays the routing table.'
         });
-
         // -----  سؤال 141  -----
         allQuestions.push({
             id: 141,
@@ -2349,7 +2432,6 @@
             correct: [0, 4],
             explanation: 'The network layer routes packets to destinations on other networks and provides unique IP addresses to identify devices.'
         });
-
         // -----  سؤال 142  -----
         allQuestions.push({
             id: 142,
@@ -2365,7 +2447,6 @@
             correct: [2, 3],
             explanation: 'The routing table stores active routes and static routes (marked with S). Directly connected routes are marked with C.'
         });
-
         // -----  سؤال 143  (مطابقة) -----
         allQuestions.push({
             id: 143,
@@ -2383,7 +2464,6 @@
                 'FCS': 'error detection' },
             explanation: 'Ethernet frame fields: preamble (sync), MAC addresses (source/destination), Type/Length (protocol), FCS (error detection).'
         });
-
         // -----  سؤال 144  -----
         allQuestions.push({
             id: 144,
@@ -2398,7 +2478,6 @@
             correct: 1,
             explanation: 'An SVI (VLAN interface) allows a switch to be managed remotely over the network via IP.'
         });
-
         // -----  سؤال 145  (مطابقة) -----
         allQuestions.push({
             id: 145,
@@ -2416,7 +2495,6 @@
                 'the process of converting information from one format into another acceptable for transmission': 'message encoding' },
             explanation: 'Encapsulation wraps data in headers, sizing breaks messages into pieces, encoding converts data to a transmittable format.'
         });
-
         // -----  سؤال 146  -----
         allQuestions.push({
             id: 146,
@@ -2431,7 +2509,6 @@
             correct: 3,
             explanation: 'For a remote destination, the frame uses the MAC address of the default gateway (router) as the destination MAC.'
         });
-
         // -----  سؤال 147  -----
         allQuestions.push({
             id: 147,
@@ -2446,7 +2523,6 @@
             correct: 3,
             explanation: 'Open standards encourage competition and provide more choices for consumers, as any vendor can implement them.'
         });
-
         // -----  سؤال 148  -----
         allQuestions.push({
             id: 148,
@@ -2463,7 +2539,6 @@
             correct: [0, 2, 3],
             explanation: 'Source ports identify the returning application. UDP segments are in IP packets. UDP destination ports identify the server application.'
         });
-
         // -----  سؤال 149  (مطابقة) -----
         allQuestions.push({
             id: 149,
@@ -2481,7 +2556,6 @@
                 'received by a sender before transmitting more segments in a session': 'acknowledgment' },
             explanation: 'Window size controls flow, sequence numbers order data, retransmission handles loss, acknowledgments confirm receipt.'
         });
-
         // -----  سؤال 150  -----
         allQuestions.push({
             id: 150,
@@ -2491,7 +2565,6 @@
             correct: 0,
             explanation: 'The exhibit likely shows subnets needing ~60 hosts. /26 (255.255.255.192) provides 62 usable addresses.'
         });
-
         // -----  سؤال 151  -----
         allQuestions.push({
             id: 151,
@@ -2501,7 +2574,6 @@
             correct: 1,
             explanation: 'The largest network needs 10 hosts, so 4 host bits (/28 = 255.255.255.240) providing 14 usable addresses.'
         });
-
         // -----  سؤال 152  (مطابقة) -----
         allQuestions.push({
             id: 152,
@@ -2517,7 +2589,6 @@
                 'path of cables that connect rooms to wiring closets': 'physical topology diagram' },
             explanation: 'Physical topology shows physical locations and cabling paths; logical topology shows IP addressing and logical groupings.'
         });
-
         // -----  سؤال 153  -----
         allQuestions.push({
             id: 153,
@@ -2529,7 +2600,6 @@
             correct: [0, 4],
             explanation: 'show ip interface brief displays IP addresses and Layer 1/Layer 2 statuses of interfaces.'
         });
-
         // -----  سؤال 154  -----
         allQuestions.push({
             id: 154,
@@ -2539,7 +2609,6 @@
             correct: 2,
             explanation: 'tracert (traceroute) shows the path and response times of each hop, helping locate delays in the network.'
         });
-
         // -----  سؤال 155  -----
         allQuestions.push({
             id: 155,
@@ -2549,7 +2618,6 @@
             correct: 2,
             explanation: 'The Time-to-Live (TTL) field is decremented by 1 at each router hop to prevent packets from looping forever.'
         });
-
         // -----  سؤال 156  -----
         allQuestions.push({
             id: 156,
@@ -2565,7 +2633,6 @@
             correct: [0, 4],
             explanation: 'Fiber requires specialized termination/splicing skills and is more expensive than copper, but offers higher data capacity.'
         });
-
         // -----  سؤال 157  (مطابقة) -----
         allQuestions.push({
             id: 157,
@@ -2581,7 +2648,6 @@
                 'a loopback address': '127.0.0.1' },
             explanation: '240.x.x.x is experimental, 169.254.x.x is link-local (APIPA), 198.133.219.2 is public, 127.0.0.1 is loopback.'
         });
-
         // -----  سؤال 158  -----
         allQuestions.push({
             id: 158,
@@ -2597,7 +2663,6 @@
             correct: 3,
             explanation: 'When a router decrements the TTL to zero, it discards the packet and sends an ICMP Time Exceeded message to the source.'
         });
-
         // -----  سؤال 159  -----
         allQuestions.push({
             id: 159,
@@ -2612,7 +2677,7 @@
         //  نهاية قائمة الأسئلة (159 سؤالاً)
         // ======================================================================
 
-        // ---- دالة خلط عشوائي (Fisher-Yates) ----
+        // ---- دوال مساعدة ----
         function shuffleArray(arr) {
             for (let i = arr.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -2623,14 +2688,134 @@
 
         // ---- الحالة العامة ----
         let questions = [];
-        let userAnswers = {}; // { qId: value or array }
+        let userAnswers = {};
         let submitted = false;
+        let currentLang = 'en'; // 'en' or 'ar'
+        let translationCache = {}; // تخزين الترجمات
 
-        // ---- تهيئة ----
+        // ---- ترجمة النص باستخدام Google Translate API (مجاني) ----
+        async function translateText(text, targetLang = 'ar') {
+            if (!text || text.trim() === '') return text;
+            if (targetLang === 'en') return text;
+            const cacheKey = text + targetLang;
+            if (translationCache[cacheKey]) return translationCache[cacheKey];
+
+            try {
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                const translated = data[0][0][0];
+                translationCache[cacheKey] = translated;
+                return translated;
+            } catch (e) {
+                console.warn('Translation failed:', e);
+                return text;
+            }
+        }
+
+        // ---- ترجمة كل العناصر المرئية ----
+        async function translateAllElements(targetLang = 'ar') {
+            const container = document.getElementById('questionsContainer');
+            const questionDivs = container.querySelectorAll('.question-container');
+            for (const div of questionDivs) {
+                const qId = parseInt(div.dataset.qid);
+                const q = questions.find(q => q.id === qId);
+                if (!q) continue;
+
+                // ترجمة السؤال
+                const questionText = div.querySelector('.question-text');
+                if (questionText) {
+                    const original = q.text;
+                    if (targetLang === 'ar') {
+                        const translated = await translateText(original, 'ar');
+                        questionText.textContent = translated;
+                    } else {
+                        questionText.textContent = original;
+                    }
+                }
+
+                // ترجمة الخيارات (للأسئلة العادية)
+                const optionItems = div.querySelectorAll('.option-item');
+                if (optionItems.length > 0 && q.options) {
+                    for (let i = 0; i < optionItems.length; i++) {
+                        const label = optionItems[i].querySelector('label');
+                        if (label) {
+                            const original = q.options[i];
+                            if (targetLang === 'ar') {
+                                const translated = await translateText(original, 'ar');
+                                label.textContent = translated;
+                            } else {
+                                label.textContent = original;
+                            }
+                        }
+                    }
+                }
+
+                // ترجمة التوصيل (المطابقة)
+                const matchPairs = div.querySelectorAll('.matching-pair');
+                if (matchPairs.length > 0 && q.pairs) {
+                    for (let i = 0; i < matchPairs.length; i++) {
+                        const leftSpan = matchPairs[i].querySelector('.left-item');
+                        if (leftSpan) {
+                            const original = q.pairs[i].left;
+                            if (targetLang === 'ar') {
+                                const translated = await translateText(original, 'ar');
+                                leftSpan.textContent = translated;
+                            } else {
+                                leftSpan.textContent = original;
+                            }
+                        }
+                        // الخيارات في select لا نترجمها لأنها قيم ثابتة (قد تكون أسماء بروتوكولات)
+                    }
+                }
+
+                // ترجمة الشرح
+                const explDiv = div.querySelector('.explanation');
+                if (explDiv) {
+                    const original = q.explanation;
+                    if (targetLang === 'ar') {
+                        const translated = await translateText(original, 'ar');
+                        explDiv.innerHTML = `<strong>شرح:</strong> ${translated}`;
+                    } else {
+                        explDiv.innerHTML = `<strong>Explanation:</strong> ${original}`;
+                    }
+                }
+            }
+            // تحديث وسم اللغة
+            document.getElementById('langLabel').textContent = targetLang === 'ar' ? '🌐 العربية' : '🌐 English';
+            currentLang = targetLang;
+            showToast(`تم الترجمة إلى ${targetLang === 'ar' ? 'العربية' : 'الإنجليزية'}`, 'info');
+        }
+
+        // ---- تبديل اللغة ----
+        function toggleLanguage() {
+            const newLang = currentLang === 'en' ? 'ar' : 'en';
+            translateAllElements(newLang);
+        }
+
+        // ---- ترجمة الكل (زر) ----
+        function translateAll() {
+            toggleLanguage();
+        }
+
+        // ---- تبديل الوضع الداكن/الفاتح ----
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            const isDark = document.body.classList.contains('dark');
+            localStorage.setItem('ccna-theme', isDark ? 'dark' : 'light');
+        }
+
+        // ---- تحميل الثيم المحفوظ ----
+        function loadTheme() {
+            const saved = localStorage.getItem('ccna-theme');
+            if (saved === 'dark') {
+                document.body.classList.add('dark');
+            }
+        }
+
+        // ---- دوال الاختبار (معدلة للتعامل مع الترجمة) ----
         function initExam() {
-            // نسخ عميق مع خلط الأسئلة
             const shuffled = shuffleArray([...allQuestions]);
-            // إعادة ترقيم مؤقتة للعرض فقط
             questions = shuffled.map((q, idx) => ({ ...q, displayIndex: idx + 1 }));
             userAnswers = {};
             submitted = false;
@@ -2639,9 +2824,12 @@
             updateProgress();
             document.getElementById('totalQ').textContent = questions.length;
             document.getElementById('answeredCount').textContent = 0;
+            // إذا كانت اللغة العربية مفعلة نترجم تلقائياً (اختياري)
+            if (currentLang === 'ar') {
+                setTimeout(() => translateAllElements('ar'), 200);
+            }
         }
 
-        // ---- عرض الأسئلة ----
         function renderQuestions() {
             const container = document.getElementById('questionsContainer');
             container.innerHTML = '';
@@ -2677,18 +2865,13 @@
                         `;
                     });
                     bodyHtml += `</div>`;
-                    // إضافة حقل خفي لتخزين الإجابات
                     bodyHtml += `<div class="hint">${q.type === 'multi' ? 'اختر جميع الإجابات الصحيحة.' : 'اختر إجابة واحدة.'}</div>`;
                 } else if (q.type === 'match') {
                     bodyHtml += `<div class="matching-grid" id="match-${q.id}">`;
-                    // نخلط الأزواج لعرض عشوائي
                     const shuffledPairs = shuffleArray([...q.pairs]);
-                    // جمع الخيارات اليمنى الفريدة
                     const rightOptions = [...new Set(shuffledPairs.map(p => p.right))];
-                    // نخلط الخيارات
                     const shuffledRight = shuffleArray([...rightOptions]);
                     shuffledPairs.forEach((pair, pi) => {
-                        const leftId = 'left-' + q.id + '-' + pi;
                         const selectId = 'sel-' + q.id + '-' + pi;
                         bodyHtml += `
                             <div class="matching-pair">
@@ -2699,10 +2882,8 @@
                                 </select>
                             </div>
                         `;
-                        // نخزن اليسار مع الـ select id
                     });
                     bodyHtml += `</div>`;
-                    // نخزن بيانات المطابقة في كائن مؤقت
                     if (!window._matchData) window._matchData = {};
                     window._matchData[q.id] = {
                         pairs: shuffledPairs,
@@ -2711,10 +2892,9 @@
                     };
                 }
 
-                // زر شرح
                 bodyHtml += `
                     <div style="margin-top:10px;">
-                        <button class="btn btn-outline" style="padding:4px 14px;font-size:13px;" onclick="toggleExplanation(${q.id})">📖 شرح</button>
+                        <button class="btn btn-outline btn-sm" onclick="toggleExplanation(${q.id})">📖 شرح</button>
                         <div class="explanation" id="expl-${q.id}">
                             <strong>شرح:</strong> ${q.explanation || 'لا يوجد شرح متاح.'}
                         </div>
@@ -2726,7 +2906,6 @@
             });
         }
 
-        // ---- تغيير الإجابة (اختيار) ----
         function onAnswerChange(qId) {
             if (submitted) return;
             const q = questions.find(x => x.id === qId);
@@ -2748,20 +2927,16 @@
                 userAnswers[qId] = selected;
             }
             updateProgress();
-            // تحديث حالة السؤال
             updateStatusBadge(qId);
         }
 
-        // ---- تغيير إجابة مطابقة ----
         function onMatchChange(qId, leftKey, rightVal) {
             if (submitted) return;
             if (!window._matchData) window._matchData = {};
             if (!window._matchData[qId]) return;
             window._matchData[qId].selections[leftKey] = rightVal;
-            // تخزين الإجابة
             const allSelected = window._matchData[qId].selections;
             const allPairs = window._matchData[qId].pairs;
-            // نتحقق إذا كل الأزواج تم اختيارها
             let allFilled = true;
             for (const p of allPairs) {
                 if (!allSelected[p.left] || allSelected[p.left] === '') {
@@ -2770,17 +2945,14 @@
                 }
             }
             if (allFilled) {
-                // تخزين ككائن
                 userAnswers[qId] = { ...allSelected };
             } else {
-                // نزيل إذا غير مكتمل
                 delete userAnswers[qId];
             }
             updateProgress();
             updateStatusBadge(qId);
         }
 
-        // ---- تحديث شريط التقدم ----
         function updateProgress() {
             const total = questions.length;
             const answered = Object.keys(userAnswers).filter(key => {
@@ -2794,7 +2966,6 @@
             document.getElementById('progressFill').style.width = Math.min(pct, 100) + '%';
         }
 
-        // ---- تحديث حالة السؤال (لم يجب / تم) ----
         function updateStatusBadge(qId) {
             const badge = document.getElementById('status-' + qId);
             if (!badge) return;
@@ -2813,13 +2984,11 @@
             }
         }
 
-        // ---- عرض/إخفاء شرح ----
         function toggleExplanation(qId) {
             const el = document.getElementById('expl-' + qId);
             if (el) el.classList.toggle('show');
         }
 
-        // ---- عرض كل الشروحات ----
         function showAllExplanations() {
             questions.forEach(q => {
                 const el = document.getElementById('expl-' + q.id);
@@ -2828,13 +2997,11 @@
             showToast('تم عرض جميع الشروحات', 'info');
         }
 
-        // ---- تسليم الاختبار ----
         function submitExam() {
             if (submitted) {
                 showToast('تم التسليم مسبقاً', 'info');
                 return;
             }
-            // تأكد من إجابة كل الأسئلة
             const total = questions.length;
             const answered = Object.keys(userAnswers).filter(key => {
                 const val = userAnswers[key];
@@ -2851,7 +3018,6 @@
 
             submitted = true;
             let correctCount = 0;
-            let totalQuestions = questions.length;
 
             questions.forEach(q => {
                 const container = document.getElementById('q-' + q.id);
@@ -2863,7 +3029,6 @@
                     const correctVal = q.correct;
                     const isRight = Array.isArray(userVal) && userVal.length === 1 && userVal[0] === correctVal;
                     isCorrect = isRight;
-                    // تمييز
                     const optDivs = container.querySelectorAll('.option-item');
                     optDivs.forEach((div, idx) => {
                         const inp = div.querySelector('input');
@@ -2880,13 +3045,11 @@
                 } else if (q.type === 'multi') {
                     const userVal = userAnswers[q.id] || [];
                     const correctVals = q.correct || [];
-                    // مقارنة مصفوفتين (بترتيب عشوائي)
                     const sortedUser = [...userVal].sort();
                     const sortedCorrect = [...correctVals].sort();
                     const isRight = sortedUser.length === sortedCorrect.length &&
                         sortedUser.every((v, i) => v === sortedCorrect[i]);
                     isCorrect = isRight;
-                    // تمييز
                     const optDivs = container.querySelectorAll('.option-item');
                     optDivs.forEach((div, idx) => {
                         const inp = div.querySelector('input');
@@ -2905,18 +3068,14 @@
                     const correctMap = q.correct || {};
                     let allMatch = true;
                     const pairs = window._matchData && window._matchData[q.id] ? window._matchData[q.id].pairs : [];
-                    // نتحقق من كل زوج
                     for (const p of pairs) {
                         const userRight = userVal[p.left] || '';
                         const expected = correctMap[p.left] || '';
-                        // نجد الـ select
-                        const sel = container.querySelector(`select[id^="sel-${q.id}-"]`);
-                        if (sel && userRight !== expected) allMatch = false;
-                        // تمييز الـ select
+                        if (userRight !== expected) allMatch = false;
                         const selects = container.querySelectorAll(`select[id^="sel-${q.id}-"]`);
                         selects.forEach(s => {
-                            const leftKey = s.closest('.matching-pair').querySelector('.left-item').textContent
-                            .trim();
+                            const leftKey = s.closest('.matching-pair').querySelector('.left-item')
+                            .textContent.trim();
                             const val = s.value;
                             const expectedVal = correctMap[leftKey] || '';
                             if (val === expectedVal) s.classList.add('correct-match');
@@ -2928,7 +3087,6 @@
                     container.classList.add(isCorrect ? 'correct' : 'incorrect');
                 }
 
-                // تحديث حالة السؤال
                 const badge = document.getElementById('status-' + q.id);
                 if (badge) {
                     badge.textContent = isCorrect ? '✅ صحيح' : '❌ خطأ';
@@ -2937,39 +3095,31 @@
                 }
             });
 
-            // عرض النتيجة
-            const score = Math.round((correctCount / totalQuestions) * 100);
+            const score = Math.round((correctCount / total) * 100);
             const passed = score >= 70;
             document.getElementById('scoreSection').style.display = 'flex';
             document.getElementById('finalScore').textContent = score + '%';
-            document.getElementById('scoreDetail').textContent = `${correctCount} من ${totalQuestions} صحيحة`;
+            document.getElementById('scoreDetail').textContent = `${correctCount} من ${total} صحيحة`;
             document.getElementById('passStatus').textContent = passed ? '✅ نجاح' : '❌ رسوب (70% مطلوب)';
             document.getElementById('passStatus').style.color = passed ? '#28a745' : '#dc3545';
 
-            // تعطيل الإدخالات
             document.querySelectorAll('input, select').forEach(el => el.disabled = true);
-
-            showToast(`النتيجة: ${score}% (${correctCount}/${totalQuestions})`, passed ? 'success' : 'error');
-
-            // تمرير إلى الأعلى
+            showToast(`النتيجة: ${score}% (${correctCount}/${total})`, passed ? 'success' : 'error');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // ---- إعادة تعيين (ترتيب عشوائي جديد) ----
         function resetExam() {
             if (submitted || Object.keys(userAnswers).length > 0) {
                 if (!confirm('سيتم إعادة ترتيب جميع الأسئلة وفقد الإجابات الحالية. متابعة؟')) {
                     return;
                 }
             }
-            // إعادة تعيين
             window._matchData = {};
             initExam();
             document.querySelectorAll('.explanation').forEach(el => el.classList.remove('show'));
             showToast('تم إعادة ترتيب الأسئلة عشوائياً', 'info');
         }
 
-        // ---- Toast (إشعار) ----
         function showToast(msg, type = 'info') {
             const toast = document.getElementById('toast');
             toast.textContent = msg;
@@ -2982,8 +3132,9 @@
 
         // ---- بدء التشغيل ----
         window.onload = function() {
+            loadTheme();
             initExam();
-            // إضافة مفتاح Enter لتسليم الاختبار
+            // اختصار Ctrl+Enter للتسليم
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' && e.ctrlKey) {
                     e.preventDefault();

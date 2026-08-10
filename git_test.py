@@ -1,0 +1,5 @@
+print("Hello master")
+print("Hello world")
+print(8+8)
+print("one edited")
+print("test ignor")
